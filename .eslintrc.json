@@ -1,0 +1,118 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/typescript"
+    // eslint의 typescript 포매팅 기능을 제거(eslint-config-prettier)
+  ],
+  "plugins": [
+    "import" // eslint-plugin-import for custom configure
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react-hooks/recommended",
+      "plugin:import/typescript",
+      // "plugin:tailwindcss/recommended", 존나 렉거림
+      // eslint의 typescript 포매팅 기능을 제거(eslint-config-prettier)
+      "prettier" // disables react-specific linting rules that conflict with prettier
+    ],
+    "plugins": [
+      "react",
+      "tailwindcss",
+      "react-hooks",
+      "import" // eslint-plugin-import for custom configure
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      },
+      "import/parsers": {
+        "@typescript-eslint/parser": [".ts", ".tsx", ".js"]
+      },
+      "import/resolver": {
+        "typescript": "./tsconfig.json"
+      }
+    },
+    "ignorePatterns": ["*.config.js", "webpack.**", "tailwind/*.js"],
+    "rules": {
+      // import plugins
+      "import/order": [
+        "warn",
+        {
+          "groups": ["builtin", "external", "internal"],
+          //     // 우선 순위 높은거를 위에 설정
+          "pathGroups": [
+            {
+              "pattern": "react",
+              "group": "external",
+              "position": "before"
+            },
+            {
+              "pattern": "recoil",
+              "group": "external",
+              "position": "before"
+            }
+          ],
+          "pathGroupsExcludedImportTypes": ["react"],
+          "newlines-between": "always",
+          "alphabetize": {
+            "order": "asc",
+            "caseInsensitive": true
+          }
+        }
+      ]
+    }
+  },
+  "ignorePatterns": ["*.config.js", "webpack.**", "tailwind/*.js"],
+  "rules": {
+    // import plugins
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        //     // 우선 순위 높은거를 위에 설정
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "recoil",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always"
+        // "alphabetize": {
+        //   "order": "asc",
+        //   "caseInsensitive": true
+        // }
+      }
+    ]
+  }
+}
