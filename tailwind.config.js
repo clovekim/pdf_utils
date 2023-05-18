@@ -151,16 +151,4 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    // require('./tailwind/blueVariant'),
-    require('./tailwind/themeText'),
-    require('./tailwind/themeBg'),
-    require('./tailwind/themeBorder'),
-    require('./tailwind/themeFill'),
-    require('@tailwindcss/aspect-ratio'),
-    require('./tailwind/wh'),
-    require('./tailwind/filled'),
-    require('./tailwind/outlined'),
-    require('./tailwind/hideScrollbar'),
-  ],
 };

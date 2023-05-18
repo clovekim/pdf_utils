@@ -6,7 +6,8 @@ import { TestViewerPage } from './pages/TestViewerPage';
 
 function App() {
   return (
-    <div>
+    <div className="mx-auto max-w-screen-lg">
+      <div className="py-2 font-bold">PDF 테스트</div>
       <Routes>
         <Route path="" element={<HomePage />} />
         <Route path="viewer" element={<TestViewerPage />}></Route>
