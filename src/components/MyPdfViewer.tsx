@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
-import { Document, Page } from 'react-pdf';
+import { Document, Page, pdfjs } from 'react-pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 function MyPdfViewer() {
   const [numPages, setNumPages] = useState(null);
@@ -12,7 +14,7 @@ function MyPdfViewer() {
 
   return (
     <div>
-      <Document file="somefile.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+      <Document file="src/assets/pdfs/sample.pdf" onLoadSuccess={onDocumentLoadSuccess}>
         <Page pageNumber={pageNumber} />
       </Document>
       <p>
