@@ -1,6 +1,9 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "engines": {
+    "node": "16"
+  },
   "private": true,
   "dependencies": {
     "@react-pdf/renderer": "^3.1.9",
@@ -25,8 +28,7 @@
     "webpack": "^5.83.1"
   },
   "scripts": {
-    "start": "yarn run setenv node scripts/start.js",
-    "setenv": "cross-env BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD) COMMIT_ID=$(git rev-parse --short HEAD)",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

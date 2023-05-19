@@ -1,33 +1,25 @@
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
-import pdfParse from 'pdf-parse';
+import { Document, Page } from 'react-pdf';
 
-const MyPdfViewer: FC = function MyPdfViewer() {
-  const [data, setData] = useState<string | null>(null);
+function MyPdfViewer() {
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
-    if (file) {
-      const dataBuffer = await file.arrayBuffer();
-      const buffer = Buffer.from(new Uint8Array(dataBuffer));
-      const pdfData = await pdfParse(buffer);
-
-      setData(pdfData.text);
-    }
-  };
+  function onDocumentLoadSuccess({ numPages }: any) {
+    setNumPages(numPages);
+  }
 
   return (
     <div>
-      <input type="file" accept="application/pdf" onChange={handleFileChange} />
-
-      {data && (
-        <div>
-          <p>{data}</p>
-        </div>
-      )}
+      <Document file="somefile.pdf" onLoadSuccess={onDocumentLoadSuccess}>
+        <Page pageNumber={pageNumber} />
+      </Document>
+      <p>
+        Page {pageNumber} of {numPages}
+      </p>
     </div>
   );
-};
+}
 
 export { MyPdfViewer };
