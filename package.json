@@ -17,6 +17,7 @@
     "@types/react-pdf": "^6.2.0",
     "antd": "^5.5.0",
     "cross-env": "^7.0.3",
+    "pdf-lib": "^1.17.1",
     "pdfjs": "^2.4.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
