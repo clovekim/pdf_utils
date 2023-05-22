@@ -2,11 +2,12 @@ import { useState } from 'react';
 
 import type { PDFDocumentProxy } from 'pdfjs-dist';
 import { Document, Page, pdfjs } from 'react-pdf';
+import './Sample.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 const options = {
   cMapUrl: 'cmaps/',
-  standardFontDataUrl: 'standard_fonts/',
+  cMapPacked: true,
 };
 
 type PDFFile = string | File | null;
@@ -38,9 +39,20 @@ function MyPdfViewer() {
           <input onChange={onFileChange} type="file" />
         </div>
         <div className="Example__container__document">
-          <Document file={file} onLoadSuccess={onDocumentLoadSuccess} options={options}>
+          <Document
+            file={file}
+            onLoadSuccess={onDocumentLoadSuccess}
+            options={options}
+            renderMode="canvas"
+          >
             {Array.from(new Array(numPages), (el, index) => (
-              <Page key={`page_${index + 1}`} pageNumber={index + 1} />
+              <Page
+                renderInteractiveForms={true}
+                renderTextLayer={false}
+                key={`page_${index + 1}`}
+                pageNumber={index + 1}
+                renderAnnotationLayer={false}
+              />
             ))}
           </Document>
         </div>
